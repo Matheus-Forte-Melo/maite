@@ -114,7 +114,47 @@ def get_ai_response(message):
     # Construir prompt com o documento relevante como contexto
     prompt = f"Contexto: {documento_relevante}\n\nPergunta do usuário: {message}"
     response = chat.send_message(prompt)
-    return response.text
+    response_formatada = converter_negrito(response.text)
+
+    if '*' in response_formatada:
+        response_formatada = substituir_asteriscos_por_br(response_formatada)
+
+    print(response.text)
+    return response_formatada
 
         
+def converter_negrito(texto):
+    partes = texto.split("**")
+    
+    # Concatenar as partes com as tags HTML de negrito
+    mensagem_formatada = ""
+    for i, parte in enumerate(partes):
+        if i % 2 == 0:
+            mensagem_formatada += parte
+        else:
+            mensagem_formatada += f"<strong>{parte}</strong>"
+    
+    return mensagem_formatada
 
+def substituir_asteriscos_por_br(texto):
+    return texto.replace('*', '<br>')
+
+#Código para rodar o chat no terminal:
+    #    while True:
+    #   texto = input("Escreva sua mensagem (ou 'sair'): ")
+    #    if texto.lower() == "sair":
+    #        break
+    #   # Gerar embedding da pergunta
+    #   embedding_pergunta = embedder.encode(texto, convert_to_tensor=True)
+
+        # Encontrar o documento mais similar
+    #    similaridades = util.pytorch_cos_sim(embedding_pergunta, embeddings_banco_de_dados)[0]
+    #    indice_documento_similar = torch.argmax(similaridades).item()
+    #    documento_relevante = banco_de_dados[indice_documento_similar]
+    #    # Construir prompt com o documento relevante como contexto
+    #    prompt = f"Contexto: {documento_relevante}\n\nPergunta do usuário: {message}"
+    #    response = chat.send_message(prompt)
+
+    #   print(response.text, "\n")
+
+    # print("Encerrando Chat")]

@@ -27,7 +27,7 @@
                     </div>
                 {% else %}
                     <div class="user_message">
-                        <p>{{message.body}}</p>
+                        <p>{{message.body | safe}}</p>
                     </div>
                 {% endif %}
             {% endfor %}
