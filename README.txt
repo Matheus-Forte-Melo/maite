@@ -2,7 +2,7 @@ Passos de instalação:
 
 1 - Selecione a pasta do projeto no seu editor de códigos/terminal
 2 - Abra um novo terminal escreva "venv/Scripts/activate" nele (sem as áspas) para ativar o ambiente virtual
-3 - digite pip install -r requirements
+3 - digite pip install -r requirements.txt
 
 Passos para inicializar o projeto depois de instalado:
 
